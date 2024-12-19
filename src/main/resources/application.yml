@@ -1,0 +1,18 @@
+person:
+  name: "John Doe"
+
+
+pet:
+  name: "曲奇"
+  type: "哈士奇"
+  friends: [ "小白", "小黑" ]
+  score:
+    math: 90
+    english: 80
+    chinese: 70
+
+  category:
+    name: "dog"
+    type: "哈士奇"
+
+  hobbies: [ "吃饭", "睡觉", "打豆豆" ]
