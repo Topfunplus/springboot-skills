@@ -2,6 +2,8 @@ package com.example.demo;
 
 import com.example.demo.exp_five.Exp6Service;
 import com.example.demo.exp_five.User;
+import com.example.demo.exp_seven.domain.Discuss;
+import com.example.demo.exp_seven.repository.DiscussRepository;
 import com.example.demo.exp_six.domain.Article;
 import com.example.demo.exp_six.domain.Comment;
 import com.example.demo.exp_six.mapper.ArticleMapper;
@@ -13,9 +15,13 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 class DemoApplicationTests {
@@ -130,6 +136,47 @@ class DemoApplicationTests {
             } catch (Exception e) {
                 System.out.println("查询失败:" + e.getMessage());
             }
+        }
+    }
+
+
+    @Nested
+    class Exp7_Test {
+        @Autowired
+        private DiscussRepository repository;
+
+        @Test
+        public void selectComment() {
+            Optional<Discuss> optional = repository.findById(1);
+            if (optional.isPresent()) {
+                System.out.println(optional.get());
+            }
+            System.out.println();
+        }
+
+        // 2、使用方法名关键字进行数据操作
+        @Test
+        public void selectCommentByKeys() {
+            List<Discuss> list = repository.findByAuthorNotNull();
+            System.out.println(list);
+        }
+
+        // 3、使用@Query注解进行数据操作
+        @Test
+        public void selectCommentPaged() {
+            Pageable pageable = PageRequest.of(0, 3);
+            List<Discuss> allPaged = repository.getDiscussPaged(1, pageable);
+            System.out.println(allPaged);
+        }
+
+        //  4、使用Example封装参数进行数据查询操作
+        @Test
+        public void selectCommentByExample() {
+            Discuss discuss = new Discuss();
+            discuss.setAuthor("张三");
+            Example<Discuss> example = Example.of(discuss);
+            List<Discuss> list = repository.findAll(example);
+            System.out.println(list);
         }
     }
 

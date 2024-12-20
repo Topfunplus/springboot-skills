@@ -68,9 +68,13 @@
             <version>1.1.10</version>
         </dependency>
 
+        <!--        exp6::整合jpa-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
 
         <!--        其他-->
-
 
         <!--        lombok依赖-->
         <dependency>
