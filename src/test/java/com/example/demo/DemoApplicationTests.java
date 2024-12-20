@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import com.example.demo.exp_eight.Address;
+import com.example.demo.exp_eight.Family;
+import com.example.demo.exp_eight.PersonRepository;
 import com.example.demo.exp_five.Exp6Service;
 import com.example.demo.exp_five.User;
 import com.example.demo.exp_seven.domain.Discuss;
@@ -8,9 +11,10 @@ import com.example.demo.exp_six.domain.Article;
 import com.example.demo.exp_six.domain.Comment;
 import com.example.demo.exp_six.mapper.ArticleMapper;
 import com.example.demo.exp_six.mapper.CommentMapper;
-import com.example.demo.exp_two.domain.Person;
+import com.example.demo.exp_eight.Person;
 import com.example.demo.exp_two.domain.Pet;
 import com.example.demo.utils.JsonFormatter;
+import org.hibernate.type.descriptor.jdbc.JdbcTypeFamilyInformation;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +24,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -178,6 +183,43 @@ class DemoApplicationTests {
             List<Discuss> list = repository.findAll(example);
             System.out.println(list);
         }
+    }
+
+    @Nested
+    class Exp8_Test {
+
+        @Autowired
+        private PersonRepository repository;
+
+        @Test
+        public void savePerson() {
+            Person person = new Person("有才", "张", new Family("china", "topfun"), new Address("北京", "中国"));
+            Person person1 = new Person("有才", "张", new Family("china", "topfun"), new Address("北京", "中国"));
+            Person save1 = repository.save(person);
+            Person save2 = repository.save(person1);
+            System.out.println(save1);
+            System.out.println(save2);
+        }
+
+        @Test
+        public void selectPerson() {
+            List<Person> list = repository.findByAddress_City("北京");
+            System.out.println(list);
+        }
+
+//        @Test
+//        public void updatePerson() {
+//            Person person = repository.findByFirstnameAndLastname("张", "有才").get(0);
+//            person.setName("小明");
+//            Person update = repository.save(person);
+//            System.out.println(update);
+//        }
+//
+//        @Test
+//        public void deletePerson() {
+//            Person person = repository.findByFirstnameAndLastname("张", "小明").get(0);
+//            repository.delete(person);
+//        }
     }
 
 }

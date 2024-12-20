@@ -36,6 +36,12 @@ spring:
       min-idle: 10
       max-active: 10
 
+  data:
+    redis:
+      host: 172.20.193.205
+      port: 6379
+      password: redis_GWdBSf
+
 mybatis:
   configuration:
     map-underscore-to-camel-case: true # enable camel case
