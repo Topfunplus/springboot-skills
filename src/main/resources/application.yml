@@ -42,6 +42,17 @@ spring:
       port: 6379
       password: redis_GWdBSf
 
+  thymeleaf:
+    cache: false
+    encoding: utf-8
+    mode: HTML5
+    prefix: classpath:/templates/
+    suffix: .html
+
+
+  messages:
+    basename: i18n.login
+
 mybatis:
   configuration:
     map-underscore-to-camel-case: true # enable camel case

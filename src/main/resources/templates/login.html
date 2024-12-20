@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+    <title>用户登录界面</title>
+    <link th:href="@{/login/css/login.css}" rel="stylesheet">
+</head>
+
+<body class="text-center">
+<form class="form-signin" th:action="@{/login}" method="post">
+    <img class="mb-4" th:src="@{/login/img/login.png}" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}"></h1>
+    <label for="inputUsername" class="sr-only" th:text="#{login.username}"></label>
+    <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required
+           autofocus>
+    <label for="inputPassword" class="sr-only" th:text="#{login.password}"></label>
+    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" name="remember-me" th:text="#{login.rememberme}">
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.button}">登录</button>
+    <p class="mt-5 mb-3 text-muted">&copy; <span th:text="${currentYear}">2023</span></p>
+    <a class="btn btn-sm" th:href="@{/toLoginPage(l='zh_CN')}">中文</a>
+    <a class="btn btn-sm" th:href="@{/toLoginPage(l='en_US')}">English</a>
+</form>
+</body>
+</html>
