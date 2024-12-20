@@ -16,3 +16,28 @@ pet:
     type: "哈士奇"
 
   hobbies: [ "吃饭", "睡觉", "打豆豆" ]
+
+
+
+# exp6
+
+spring:
+  # mysql
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.20.193.205:3300/springtest
+    username: springtest
+    password: wH284GhZaHd6b5jt
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    # druid
+    druid:
+      initial-size: 0
+      min-idle: 10
+      max-active: 10
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true # enable camel case
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.demo.exp_six.domain
